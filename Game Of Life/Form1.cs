@@ -17,8 +17,9 @@ namespace Game_Of_Life {
 		bool[,] scratchPad;
 
 		// Drawing colors
-		Color gridColor = Color.DarkSlateGray;
-		Color cellColor = Color.Teal;
+		Color gridColor      = Color.DarkSlateGray;
+		Color cellColor      = Color.Teal;
+		Color emptyCellColor = Color.LightSlateGray;
 
 		// The Timer class
 		Timer timer = new Timer();
@@ -36,6 +37,9 @@ namespace Game_Of_Life {
 
 			// Setup the timer
 			timer.Interval = 20; // milliseconds
+
+			//Display the Grid Size of the Universe
+			toolStripStatusLabelGridSize.Text = "Grid Size = " + universe.GetLength(0) + ", " + universe.GetLength(1);
 		}
 
 		// Calculate the next generation of cells
@@ -45,7 +49,7 @@ namespace Game_Of_Life {
 			int[,] neighbors = new int[scratchPad.GetLength(0), scratchPad.GetLength(1)];
 			for (int y = 0; y < scratchPad.GetLength(1); y++) {
 				for (int x = 0; x < scratchPad.GetLength(0); x++) {
-					neighbors[x, y] = CellLife(x, y);
+					neighbors[x, y] = CountNeighbors(x, y);
 				}
 			}
 
@@ -64,7 +68,7 @@ namespace Game_Of_Life {
 
 			for (int y = 0; y < scratchPad.GetLength(1); y++) {
 				for (int x = 0; x < scratchPad.GetLength(0); x++) {
-					neighbors[x, y] = CellLife(x, y);
+					neighbors[x, y] = CountNeighbors(x, y);
 				}
 			}
 
@@ -93,7 +97,7 @@ namespace Game_Of_Life {
 
 			// A Brush for filling living cells interiors (color)
 			Brush cellBrush      = new SolidBrush(cellColor);
-			Brush cellEmptyBrush = new SolidBrush(Color.LightSlateGray);
+			Brush cellEmptyBrush = new SolidBrush(emptyCellColor);
 
 			Font font = new Font("Arial", 8f);
 
@@ -115,7 +119,7 @@ namespace Game_Of_Life {
 					cellRect.Width  = cellWidth;
 					cellRect.Height = cellHeight;
 
-					int neighbors = CellLife(x, y);
+					int neighbors = CountNeighbors(x, y);
 
 					// Fill the cell with a brush if alive
 					if (universe[x, y]) {
@@ -204,7 +208,7 @@ namespace Game_Of_Life {
 			graphicsPanel1.Invalidate();
 		}
 
-		private int CellLife(int x, int y) {
+		private int CountNeighbors(int x, int y) {
 			int livingNeighbors = 0;
 			for (int j = -1; j <= 1; j++) {
 				for (int i = -1; i <= 1; i++) {
@@ -326,6 +330,22 @@ namespace Game_Of_Life {
 				reader.Close();
 				graphicsPanel1.Invalidate();
 			}
+		}
+
+		private void darkModeToolStripMenuItem_Click(object sender, EventArgs e) {
+			gridColor      = Color.DarkSlateGray;
+			cellColor      = Color.Teal;
+			emptyCellColor = Color.LightSlateGray;
+			
+			graphicsPanel1.Invalidate();
+		}
+
+		private void lightModeToolStripMenuItem_Click(object sender, EventArgs e) {
+			gridColor      = Color.SlateGray;
+			cellColor      = Color.Black;
+			emptyCellColor = Color.White;
+			
+			graphicsPanel1.Invalidate();
 		}
 	}
 }
