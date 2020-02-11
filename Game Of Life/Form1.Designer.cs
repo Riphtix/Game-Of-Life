@@ -186,34 +186,34 @@
 			// 
 			this.customizeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.themesToolStripMenuItem});
 			this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-			this.customizeToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+			this.customizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.customizeToolStripMenuItem.Text = "&Customize";
 			// 
 			// themesToolStripMenuItem
 			// 
 			this.themesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.darkToolStripMenuItem, this.lightToolStripMenuItem});
 			this.themesToolStripMenuItem.Name = "themesToolStripMenuItem";
-			this.themesToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+			this.themesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.themesToolStripMenuItem.Text = "Themes";
 			// 
 			// darkToolStripMenuItem
 			// 
 			this.darkToolStripMenuItem.Name  =  "darkToolStripMenuItem";
-			this.darkToolStripMenuItem.Size  =  new System.Drawing.Size(101, 22);
+			this.darkToolStripMenuItem.Size  =  new System.Drawing.Size(152, 22);
 			this.darkToolStripMenuItem.Text  =  "Dark";
 			this.darkToolStripMenuItem.Click += new System.EventHandler(this.darkModeToolStripMenuItem_Click);
 			// 
 			// lightToolStripMenuItem
 			// 
 			this.lightToolStripMenuItem.Name  =  "lightToolStripMenuItem";
-			this.lightToolStripMenuItem.Size  =  new System.Drawing.Size(101, 22);
+			this.lightToolStripMenuItem.Size  =  new System.Drawing.Size(152, 22);
 			this.lightToolStripMenuItem.Text  =  "Light";
 			this.lightToolStripMenuItem.Click += new System.EventHandler(this.lightModeToolStripMenuItem_Click);
 			// 
 			// optionsToolStripMenuItem
 			// 
 			this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-			this.optionsToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+			this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.optionsToolStripMenuItem.Text = "&Options";
 			// 
 			// helpToolStripMenuItem
@@ -278,7 +278,7 @@
 			// newToolStripButton
 			// 
 			this.newToolStripButton.DisplayStyle          =  System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.newToolStripButton.Image                 =  ((System.Drawing.Image) (resources.GetObject("newToolStripButton.Image")));
+			this.newToolStripButton.Image                 =  global::Game_Of_Life.Properties.Resources.ic_insert_drive_file_white_24dp;
 			this.newToolStripButton.ImageTransparentColor =  System.Drawing.Color.Magenta;
 			this.newToolStripButton.Name                  =  "newToolStripButton";
 			this.newToolStripButton.Size                  =  new System.Drawing.Size(23, 22);
@@ -288,7 +288,7 @@
 			// openToolStripButton
 			// 
 			this.openToolStripButton.DisplayStyle          =  System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.openToolStripButton.Image                 =  ((System.Drawing.Image) (resources.GetObject("openToolStripButton.Image")));
+			this.openToolStripButton.Image                 =  global::Game_Of_Life.Properties.Resources.ic_create_new_folder_white_24dp;
 			this.openToolStripButton.ImageTransparentColor =  System.Drawing.Color.Magenta;
 			this.openToolStripButton.Name                  =  "openToolStripButton";
 			this.openToolStripButton.Size                  =  new System.Drawing.Size(23, 22);
@@ -300,7 +300,7 @@
 			this.saveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.saveToolStripButton.Font =
 				new System.Drawing.Font("Fira Code", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-			this.saveToolStripButton.Image                 =  ((System.Drawing.Image) (resources.GetObject("saveToolStripButton.Image")));
+			this.saveToolStripButton.Image                 =  global::Game_Of_Life.Properties.Resources.ic_save_white_24dp;
 			this.saveToolStripButton.ImageTransparentColor =  System.Drawing.Color.Magenta;
 			this.saveToolStripButton.Name                  =  "saveToolStripButton";
 			this.saveToolStripButton.Size                  =  new System.Drawing.Size(23, 22);
@@ -316,7 +316,7 @@
 			// cutToolStripButton
 			// 
 			this.cutToolStripButton.DisplayStyle          = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.cutToolStripButton.Image                 = ((System.Drawing.Image) (resources.GetObject("cutToolStripButton.Image")));
+			this.cutToolStripButton.Image                 = global::Game_Of_Life.Properties.Resources.ic_content_cut_white_24dp;
 			this.cutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.cutToolStripButton.Name                  = "cutToolStripButton";
 			this.cutToolStripButton.Size                  = new System.Drawing.Size(23, 22);
@@ -325,7 +325,7 @@
 			// copyToolStripButton
 			// 
 			this.copyToolStripButton.DisplayStyle          = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.copyToolStripButton.Image                 = ((System.Drawing.Image) (resources.GetObject("copyToolStripButton.Image")));
+			this.copyToolStripButton.Image                 = global::Game_Of_Life.Properties.Resources.ic_content_copy_white_24dp;
 			this.copyToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.copyToolStripButton.Name                  = "copyToolStripButton";
 			this.copyToolStripButton.Size                  = new System.Drawing.Size(23, 22);
@@ -334,7 +334,7 @@
 			// pasteToolStripButton
 			// 
 			this.pasteToolStripButton.DisplayStyle          = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.pasteToolStripButton.Image                 = ((System.Drawing.Image) (resources.GetObject("pasteToolStripButton.Image")));
+			this.pasteToolStripButton.Image                 = global::Game_Of_Life.Properties.Resources.ic_content_paste_white_24dp;
 			this.pasteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.pasteToolStripButton.Name                  = "pasteToolStripButton";
 			this.pasteToolStripButton.Size                  = new System.Drawing.Size(23, 22);
@@ -348,7 +348,7 @@
 			// helpToolStripButton
 			// 
 			this.helpToolStripButton.DisplayStyle          = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.helpToolStripButton.Image                 = ((System.Drawing.Image) (resources.GetObject("helpToolStripButton.Image")));
+			this.helpToolStripButton.Image                 = global::Game_Of_Life.Properties.Resources.ic_info_outline_white_24dp;
 			this.helpToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.helpToolStripButton.Name                  = "helpToolStripButton";
 			this.helpToolStripButton.Size                  = new System.Drawing.Size(23, 22);
@@ -357,7 +357,7 @@
 			// startButton
 			// 
 			this.startButton.DisplayStyle          =  System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.startButton.Image                 =  ((System.Drawing.Image) (resources.GetObject("startButton.Image")));
+			this.startButton.Image                 =  global::Game_Of_Life.Properties.Resources.ic_play_arrow_white_24dp;
 			this.startButton.ImageTransparentColor =  System.Drawing.Color.Magenta;
 			this.startButton.Name                  =  "startButton";
 			this.startButton.Size                  =  new System.Drawing.Size(23, 22);
@@ -367,7 +367,7 @@
 			// pauseButton
 			// 
 			this.pauseButton.DisplayStyle          =  System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.pauseButton.Image                 =  ((System.Drawing.Image) (resources.GetObject("pauseButton.Image")));
+			this.pauseButton.Image                 =  global::Game_Of_Life.Properties.Resources.ic_pause_white_24dp;
 			this.pauseButton.ImageTransparentColor =  System.Drawing.Color.Magenta;
 			this.pauseButton.Name                  =  "pauseButton";
 			this.pauseButton.Size                  =  new System.Drawing.Size(23, 22);
@@ -377,7 +377,7 @@
 			// stepButton
 			// 
 			this.stepButton.DisplayStyle          =  System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.stepButton.Image                 =  ((System.Drawing.Image) (resources.GetObject("stepButton.Image")));
+			this.stepButton.Image                 =  global::Game_Of_Life.Properties.Resources.ic_skip_next_white_24dp;
 			this.stepButton.ImageTransparentColor =  System.Drawing.Color.Magenta;
 			this.stepButton.Name                  =  "stepButton";
 			this.stepButton.Size                  =  new System.Drawing.Size(23, 22);
@@ -387,7 +387,7 @@
 			// seeNeighborCountToggle
 			// 
 			this.seeNeighborCountToggle.DisplayStyle          =  System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.seeNeighborCountToggle.Image                 =  ((System.Drawing.Image) (resources.GetObject("seeNeighborCountToggle.Image")));
+			this.seeNeighborCountToggle.Image                 =  global::Game_Of_Life.Properties.Resources.ic_repeat_one_white_24dp;
 			this.seeNeighborCountToggle.ImageTransparentColor =  System.Drawing.Color.Magenta;
 			this.seeNeighborCountToggle.Name                  =  "seeNeighborCountToggle";
 			this.seeNeighborCountToggle.Size                  =  new System.Drawing.Size(23, 22);

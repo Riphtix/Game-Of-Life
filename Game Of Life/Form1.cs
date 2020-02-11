@@ -99,7 +99,7 @@ namespace Game_Of_Life {
 			Brush cellBrush      = new SolidBrush(cellColor);
 			Brush cellEmptyBrush = new SolidBrush(emptyCellColor);
 
-			Font font = new Font("Arial", 8f);
+			Font font = new Font("Fira Sans", 8f);
 
 			StringFormat stringFormat = new StringFormat();
 			stringFormat.Alignment     = StringAlignment.Center;
