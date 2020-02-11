@@ -83,23 +83,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\ic_add_box_white_48dp.png" />
-    <Content Include="Resources\ic_content_copy_white_18dp.png" />
     <Content Include="Resources\ic_content_copy_white_24dp.png" />
-    <Content Include="Resources\ic_content_copy_white_48dp.png" />
     <Content Include="Resources\ic_content_cut_white_24dp.png" />
-    <Content Include="Resources\ic_content_cut_white_48dp.png" />
     <Content Include="Resources\ic_content_paste_white_24dp.png" />
     <Content Include="Resources\ic_create_new_folder_white_24dp.png" />
-    <Content Include="Resources\ic_create_new_folder_white_48dp.png" />
     <Content Include="Resources\ic_info_outline_white_24dp.png" />
     <Content Include="Resources\ic_insert_drive_file_white_24dp.png" />
-    <Content Include="Resources\ic_insert_drive_file_white_48dp.png" />
     <Content Include="Resources\ic_pause_white_24dp.png" />
     <Content Include="Resources\ic_play_arrow_white_24dp.png" />
     <Content Include="Resources\ic_repeat_one_white_24dp.png" />
     <Content Include="Resources\ic_save_white_24dp.png" />
-    <Content Include="Resources\ic_save_white_48dp.png" />
     <Content Include="Resources\ic_skip_next_white_24dp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
