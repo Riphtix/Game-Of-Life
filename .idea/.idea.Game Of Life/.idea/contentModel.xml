@@ -20,23 +20,13 @@
           <e p="Settings.settings" t="Include" />
         </e>
         <e p="Resources" t="Include">
-          <e p="ic_add_box_white_48dp.png" t="Include" />
-          <e p="ic_content_copy_white_18dp.png" t="Include" />
-          <e p="ic_content_copy_white_24dp.png" t="Include" />
-          <e p="ic_content_copy_white_48dp.png" t="Include" />
-          <e p="ic_content_cut_white_24dp.png" t="Include" />
-          <e p="ic_content_cut_white_48dp.png" t="Include" />
-          <e p="ic_content_paste_white_24dp.png" t="Include" />
           <e p="ic_create_new_folder_white_24dp.png" t="Include" />
-          <e p="ic_create_new_folder_white_48dp.png" t="Include" />
           <e p="ic_info_outline_white_24dp.png" t="Include" />
           <e p="ic_insert_drive_file_white_24dp.png" t="Include" />
-          <e p="ic_insert_drive_file_white_48dp.png" t="Include" />
           <e p="ic_pause_white_24dp.png" t="Include" />
           <e p="ic_play_arrow_white_24dp.png" t="Include" />
           <e p="ic_repeat_one_white_24dp.png" t="Include" />
           <e p="ic_save_white_24dp.png" t="Include" />
-          <e p="ic_save_white_48dp.png" t="Include" />
           <e p="ic_skip_next_white_24dp.png" t="Include" />
         </e>
       </e>

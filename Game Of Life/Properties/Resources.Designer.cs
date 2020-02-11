@@ -63,89 +63,9 @@ namespace Game_Of_Life.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ic_add_box_white_48dp {
-            get {
-                object obj = ResourceManager.GetObject("ic_add_box_white_48dp", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ic_content_copy_white_18dp {
-            get {
-                object obj = ResourceManager.GetObject("ic_content_copy_white_18dp", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ic_content_copy_white_24dp {
-            get {
-                object obj = ResourceManager.GetObject("ic_content_copy_white_24dp", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ic_content_copy_white_48dp {
-            get {
-                object obj = ResourceManager.GetObject("ic_content_copy_white_48dp", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ic_content_cut_white_24dp {
-            get {
-                object obj = ResourceManager.GetObject("ic_content_cut_white_24dp", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ic_content_cut_white_48dp {
-            get {
-                object obj = ResourceManager.GetObject("ic_content_cut_white_48dp", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ic_content_paste_white_24dp {
-            get {
-                object obj = ResourceManager.GetObject("ic_content_paste_white_24dp", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap ic_create_new_folder_white_24dp {
             get {
                 object obj = ResourceManager.GetObject("ic_create_new_folder_white_24dp", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ic_create_new_folder_white_48dp {
-            get {
-                object obj = ResourceManager.GetObject("ic_create_new_folder_white_48dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -166,16 +86,6 @@ namespace Game_Of_Life.Properties {
         internal static System.Drawing.Bitmap ic_insert_drive_file_white_24dp {
             get {
                 object obj = ResourceManager.GetObject("ic_insert_drive_file_white_24dp", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ic_insert_drive_file_white_48dp {
-            get {
-                object obj = ResourceManager.GetObject("ic_insert_drive_file_white_48dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -216,16 +126,6 @@ namespace Game_Of_Life.Properties {
         internal static System.Drawing.Bitmap ic_save_white_24dp {
             get {
                 object obj = ResourceManager.GetObject("ic_save_white_24dp", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ic_save_white_48dp {
-            get {
-                object obj = ResourceManager.GetObject("ic_save_white_48dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

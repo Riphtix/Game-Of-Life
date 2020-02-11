@@ -53,10 +53,6 @@
 			this.openToolStripButton             = new System.Windows.Forms.ToolStripButton();
 			this.saveToolStripButton             = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator6             = new System.Windows.Forms.ToolStripSeparator();
-			this.cutToolStripButton              = new System.Windows.Forms.ToolStripButton();
-			this.copyToolStripButton             = new System.Windows.Forms.ToolStripButton();
-			this.pasteToolStripButton            = new System.Windows.Forms.ToolStripButton();
-			this.toolStripSeparator7             = new System.Windows.Forms.ToolStripSeparator();
 			this.helpToolStripButton             = new System.Windows.Forms.ToolStripButton();
 			this.startButton                     = new System.Windows.Forms.ToolStripButton();
 			this.pauseButton                     = new System.Windows.Forms.ToolStripButton();
@@ -263,10 +259,8 @@
 			this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 																						this.newToolStripButton, this.openToolStripButton, this.saveToolStripButton,
-																						this.toolStripSeparator6, this.cutToolStripButton,
-																						this.copyToolStripButton, this.pasteToolStripButton, this.toolStripSeparator7,
-																						this.helpToolStripButton, this.startButton,
-																						this.pauseButton, this.stepButton, this.seeNeighborCountToggle
+																						this.toolStripSeparator6, this.helpToolStripButton,
+																						this.startButton, this.pauseButton, this.stepButton, this.seeNeighborCountToggle
 																					});
 			this.toolStrip1.Location   = new System.Drawing.Point(0, 24);
 			this.toolStrip1.Name       = "toolStrip1";
@@ -312,38 +306,6 @@
 			this.toolStripSeparator6.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.toolStripSeparator6.Name      = "toolStripSeparator6";
 			this.toolStripSeparator6.Size      = new System.Drawing.Size(6, 25);
-			// 
-			// cutToolStripButton
-			// 
-			this.cutToolStripButton.DisplayStyle          = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.cutToolStripButton.Image                 = global::Game_Of_Life.Properties.Resources.ic_content_cut_white_24dp;
-			this.cutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.cutToolStripButton.Name                  = "cutToolStripButton";
-			this.cutToolStripButton.Size                  = new System.Drawing.Size(23, 22);
-			this.cutToolStripButton.Text                  = "C&ut";
-			// 
-			// copyToolStripButton
-			// 
-			this.copyToolStripButton.DisplayStyle          = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.copyToolStripButton.Image                 = global::Game_Of_Life.Properties.Resources.ic_content_copy_white_24dp;
-			this.copyToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.copyToolStripButton.Name                  = "copyToolStripButton";
-			this.copyToolStripButton.Size                  = new System.Drawing.Size(23, 22);
-			this.copyToolStripButton.Text                  = "&Copy";
-			// 
-			// pasteToolStripButton
-			// 
-			this.pasteToolStripButton.DisplayStyle          = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.pasteToolStripButton.Image                 = global::Game_Of_Life.Properties.Resources.ic_content_paste_white_24dp;
-			this.pasteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.pasteToolStripButton.Name                  = "pasteToolStripButton";
-			this.pasteToolStripButton.Size                  = new System.Drawing.Size(23, 22);
-			this.pasteToolStripButton.Text                  = "&Paste";
-			// 
-			// toolStripSeparator7
-			// 
-			this.toolStripSeparator7.Name = "toolStripSeparator7";
-			this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
 			// 
 			// helpToolStripButton
 			// 
@@ -489,10 +451,6 @@
 		private System.Windows.Forms.ToolStripButton openToolStripButton;
 		private System.Windows.Forms.ToolStripButton saveToolStripButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-		private System.Windows.Forms.ToolStripButton cutToolStripButton;
-		private System.Windows.Forms.ToolStripButton copyToolStripButton;
-		private System.Windows.Forms.ToolStripButton pasteToolStripButton;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
 		private System.Windows.Forms.ToolStripButton helpToolStripButton;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelGenerations;
 		private Game_Of_Life.GraphicsPanel graphicsPanel1;

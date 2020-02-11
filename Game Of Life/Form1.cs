@@ -37,9 +37,6 @@ namespace Game_Of_Life {
 
 			// Setup the timer
 			timer.Interval = 20; // milliseconds
-
-			//Display the Grid Size of the Universe
-			toolStripStatusLabelGridSize.Text = "Grid Size = " + universe.GetLength(0) + ", " + universe.GetLength(1);
 		}
 
 		// Calculate the next generation of cells
@@ -99,6 +96,7 @@ namespace Game_Of_Life {
 			Brush cellBrush      = new SolidBrush(cellColor);
 			Brush cellEmptyBrush = new SolidBrush(emptyCellColor);
 
+			// Create and format font
 			Font font = new Font("Fira Sans", 8f);
 
 			StringFormat stringFormat = new StringFormat();
@@ -144,6 +142,9 @@ namespace Game_Of_Life {
 					e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
 				}
 			}
+
+			//Display the Grid Size of the Universe
+			toolStripStatusLabelGridSize.Text = "Grid Size = " + universe.GetLength(0) + ", " + universe.GetLength(1);
 
 			// Cleaning up pens and brushes
 			font.Dispose();
@@ -231,6 +232,8 @@ namespace Game_Of_Life {
 
 		private void seeNeighborCountToggle_Click(object sender, EventArgs e) {
 			seeNeighborCount = !seeNeighborCount;
+
+			graphicsPanel1.Invalidate();
 		}
 
 		private void saveToolStripButton_Click(object sender, EventArgs e) {
@@ -347,5 +350,7 @@ namespace Game_Of_Life {
 			
 			graphicsPanel1.Invalidate();
 		}
+		
+		//TODO: Make grid resizeable
 	}
 }
