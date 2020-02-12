@@ -43,6 +43,8 @@ namespace Game_Of_Life {
 		private void NextGeneration() {
 			// Increment generation count
 			generations++;
+
+			//Create grid of neighbors
 			int[,] neighbors = new int[scratchPad.GetLength(0), scratchPad.GetLength(1)];
 			for (int y = 0; y < scratchPad.GetLength(1); y++) {
 				for (int x = 0; x < scratchPad.GetLength(0); x++) {
@@ -53,19 +55,11 @@ namespace Game_Of_Life {
 			//Birth next generation and kill off previous one
 			for (int y = 0; y < scratchPad.GetLength(1); y++) {
 				for (int x = 0; x < scratchPad.GetLength(0); x++) {
-					if (neighbors[x, y] == 3) {
+					if (neighbors[x, y] == 3 || neighbors[x, y] == 2 && universe[x, y]) {
 						scratchPad[x, y] = true;
-					} else if (neighbors[x, y] == 2 && scratchPad[x, y]) {
-						scratchPad[x, y] = true;
-					} else if (neighbors[x, y] != 2 || neighbors[x, y] != 3) {
+					} else {
 						scratchPad[x, y] = false;
 					}
-				}
-			}
-
-			for (int y = 0; y < scratchPad.GetLength(1); y++) {
-				for (int x = 0; x < scratchPad.GetLength(0); x++) {
-					neighbors[x, y] = CountNeighbors(x, y);
 				}
 			}
 
@@ -103,8 +97,7 @@ namespace Game_Of_Life {
 			stringFormat.Alignment     = StringAlignment.Center;
 			stringFormat.LineAlignment = StringAlignment.Center;
 
-			universe   = scratchPad;
-			scratchPad = universe;
+			universe = scratchPad;
 
 			// Iterate through the universe in the y, top to bottom
 			for (int y = 0; y < scratchPad.GetLength(1); y++) {
@@ -215,7 +208,7 @@ namespace Game_Of_Life {
 				for (int i = -1; i <= 1; i++) {
 					if (x + i <= universe.GetLength(0) - 1 && y + j <= universe.GetLength(1) - 1 && x + i >= 0 && y + j >= 0) {
 						if (i != 0 || j != 0) {
-							if (scratchPad[x + i, y + j]) {
+							if (universe[x + i, y + j]) {
 								livingNeighbors++;
 							}
 						}
@@ -339,7 +332,7 @@ namespace Game_Of_Life {
 			gridColor      = Color.DarkSlateGray;
 			cellColor      = Color.Teal;
 			emptyCellColor = Color.LightSlateGray;
-			
+
 			graphicsPanel1.Invalidate();
 		}
 
@@ -347,10 +340,10 @@ namespace Game_Of_Life {
 			gridColor      = Color.SlateGray;
 			cellColor      = Color.Black;
 			emptyCellColor = Color.White;
-			
+
 			graphicsPanel1.Invalidate();
 		}
-		
+
 		//TODO: Make grid resizeable
 	}
 }
