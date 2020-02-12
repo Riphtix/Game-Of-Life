@@ -9,6 +9,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace Game_Of_Life {
 	public partial class Form1 : Form {
@@ -28,12 +29,17 @@ namespace Game_Of_Life {
 		int generations = 0;
 
 		bool seeNeighborCount = false;
+		int  seed             = 0;
 
 		public Form1() {
 			InitializeComponent();
 
 			// Setup next universe
 			scratchPad = new bool[universe.GetLength(0), universe.GetLength(1)];
+
+			widthTextBox.Text  = universe.GetLength(0).ToString();
+			heightTextBox.Text = universe.GetLength(1).ToString();
+			seedTextBox.Text   = seed.ToString();
 
 			// Setup the timer
 			timer.Interval = 20; // milliseconds
@@ -138,6 +144,7 @@ namespace Game_Of_Life {
 
 			//Display the Grid Size of the Universe
 			toolStripStatusLabelGridSize.Text = "Grid Size = " + universe.GetLength(0) + ", " + universe.GetLength(1);
+			seedToolStrip.Text                = "Seed = "                                     + seed;
 
 			// Cleaning up pens and brushes
 			font.Dispose();
@@ -344,6 +351,54 @@ namespace Game_Of_Life {
 			graphicsPanel1.Invalidate();
 		}
 
-		//TODO: Make grid resizeable
+		private void widthTextBox_TextChanged(object sender, EventArgs e) {
+			int.TryParse(widthTextBox.Text, out int width);
+			universe   = new bool[width, universe.GetLength(1)];
+			scratchPad = universe;
+
+			graphicsPanel1.Invalidate();
+		}
+
+		private void heightTextBox_TextChanged(object sender, EventArgs e) {
+			int.TryParse(heightTextBox.Text, out int height);
+			universe   = new bool[universe.GetLength(0), height];
+			scratchPad = universe;
+
+			graphicsPanel1.Invalidate();
+		}
+
+		private void fromTimeToolStripMenuItem_Click(object sender, EventArgs e) {
+			Random rand = new Random(DateTime.Now.Millisecond);
+			seed             = rand.Next();
+			seedTextBox.Text = seed.ToString();
+			Randomize();
+		}
+
+		private void seedTextBox_TextChanged(object sender, EventArgs e) {
+			int.TryParse(seedTextBox.Text, out seed);
+			graphicsPanel1.Invalidate();
+		}
+
+		private void fromSeedToolStripMenuItem_Click(object sender, EventArgs e) {
+			seedTextBox.Text = seed.ToString();
+			Randomize();
+		}
+
+		private void Randomize() {
+			Random randFromSeed = new Random(seed);
+			int    rand         = 0;
+			for (int y = 0; y < universe.GetLength(1); y++) {
+				for (int x = 0; x < universe.GetLength(0); x++) {
+					rand = randFromSeed.Next(2);
+					if (rand != 0) {
+						scratchPad[x, y] = false;
+					} else {
+						scratchPad[x, y] = true;
+					}
+				}
+			}
+
+			graphicsPanel1.Invalidate();
+		}
 	}
 }
