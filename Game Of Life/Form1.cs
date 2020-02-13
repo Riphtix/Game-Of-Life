@@ -1,79 +1,133 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
+using Game_Of_Life.Properties;
 
 namespace Game_Of_Life {
 	public partial class Form1 : Form {
-		// The universe array
-		bool[,] universe = new bool[100, 50];
-		bool[,] scratchPad;
+		//Dialog boxes
+		private SettingsDialog _settingsDialog;
 
 		// Drawing colors
-		Color gridColor      = Color.DarkSlateGray;
-		Color cellColor      = Color.Teal;
-		Color emptyCellColor = Color.LightSlateGray;
-
-		// The Timer class
-		Timer timer = new Timer();
+		private string _currentTheme   = "DARK";
+		private Color  _gridColor      = Color.DarkSlateGray;
+		private Color  _emptyCellColor = Color.LightSlateGray;
+		private Color  _cellColor      = Color.Teal;
 
 		// Generation count
-		int generations = 0;
+		private int _generations;
 
-		bool seeNeighborCount = false;
-		int  seed             = 0;
-		bool infinite         = false;
+		private bool _infinite;
+		private int  _seed;
+
+		private bool _seeNeighborCount;
+
+		// The Timer class
+		private readonly Timer _timer = new Timer();
+
+		// The universe array
+		private bool[,] _universe = new bool[100, 50];
+		private bool[,] _scratchPad;
+
+		public int Width {
+			get => _universe.GetLength(0);
+			set {
+				_universe   = new bool[value, _universe.GetLength(1)];
+				_scratchPad = _universe;
+
+				graphicsPanel1.Invalidate();
+			}
+		}
+
+		public int Height {
+			get => _universe.GetLength(1);
+			set {
+				_universe   = new bool[_universe.GetLength(0), value];
+				_scratchPad = _universe;
+
+				graphicsPanel1.Invalidate();
+			}
+		}
 
 		public Form1() {
 			InitializeComponent();
+			_settingsDialog = new SettingsDialog();
 
 			// Setup next universe
-			scratchPad = new bool[universe.GetLength(0), universe.GetLength(1)];
+			_scratchPad = new bool[_universe.GetLength(0), _universe.GetLength(1)];
 
-			widthTextBox.Text  = universe.GetLength(0).ToString();
-			heightTextBox.Text = universe.GetLength(1).ToString();
-			seedTextBox.Text   = seed.ToString();
+			//Read settings
+			_currentTheme = Settings.Default.Theme;
+			SetTheme();
+
+			//Set Initial values for the text boxes
+			widthTextBox.Text  = _universe.GetLength(0).ToString();
+			heightTextBox.Text = _universe.GetLength(1).ToString();
+			seedTextBox.Text   = _seed.ToString();
 
 			// Setup the timer
-			timer.Interval = 20; // milliseconds
+			_timer.Interval = 20; // milliseconds
+		}
+
+		public void SetTheme() {
+			if (_currentTheme == "DARK") {
+				SetDarkMode();
+			} else if (_currentTheme == "LIGHT") {
+				SetLightMode();
+			} else if (_cellColor      != Color.Teal           && _cellColor      != Color.Black || _gridColor != Color.DarkSlateGray && _gridColor != Color.SlateGray ||
+					   _emptyCellColor != Color.LightSlateGray && _emptyCellColor != Color.White || _currentTheme == "CUSTOM") {
+				_currentTheme = "CUSTOM";
+				SetColors();
+			}
+		}
+
+		private void SetColors() {
+			_gridColor      = Settings.Default.LineColor;
+			_cellColor      = Settings.Default.LivingCellColor;
+			_emptyCellColor = Settings.Default.BackColor;
+		}
+
+		private void SetDarkMode() {
+			_gridColor      = Color.DarkSlateGray;
+			_cellColor      = Color.Teal;
+			_emptyCellColor = Color.LightSlateGray;
+
+			graphicsPanel1.Invalidate();
+		}
+
+		private void SetLightMode() {
+			_gridColor      = Color.SlateGray;
+			_cellColor      = Color.Black;
+			_emptyCellColor = Color.White;
+
+			graphicsPanel1.Invalidate();
 		}
 
 		// Calculate the next generation of cells
 		private void NextGeneration() {
 			// Increment generation count
-			generations++;
+			_generations++;
 
 			//Create grid of neighbors
-			int[,] neighbors = new int[scratchPad.GetLength(0), scratchPad.GetLength(1)];
-			for (int y = 0; y < scratchPad.GetLength(1); y++) {
-				for (int x = 0; x < scratchPad.GetLength(0); x++) {
-					neighbors[x, y] = CountNeighbors(x, y);
-				}
+			int[,] neighbors = new int[_scratchPad.GetLength(0), _scratchPad.GetLength(1)];
+			for (int y = 0; y < _scratchPad.GetLength(1); y++) {
+				for (int x = 0; x < _scratchPad.GetLength(0); x++) neighbors[x, y] = CountNeighbors(x, y);
 			}
 
 			//Birth next generation and kill off previous one
-			for (int y = 0; y < scratchPad.GetLength(1); y++) {
-				for (int x = 0; x < scratchPad.GetLength(0); x++) {
-					if (neighbors[x, y] == 3 || neighbors[x, y] == 2 && universe[x, y]) {
-						scratchPad[x, y] = true;
-					} else {
-						scratchPad[x, y] = false;
-					}
-				}
+			for (int y = 0; y < _scratchPad.GetLength(1); y++) {
+				for (int x = 0; x < _scratchPad.GetLength(0); x++)
+					if (neighbors[x, y] == 3 || neighbors[x, y] == 2 && _universe[x, y])
+						_scratchPad[x, y] = true;
+					else
+						_scratchPad[x, y] = false;
 			}
 
 			graphicsPanel1.Invalidate();
 
 			// Update status strip generations
-			toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+			toolStripStatusLabelGenerations.Text = "Generations = " + _generations;
 		}
 
 		// The event called by the timer every Interval milliseconds.
@@ -86,16 +140,16 @@ namespace Game_Of_Life {
 		private void graphicsPanel1_Paint(object sender, PaintEventArgs e) {
 			// Calculate the width and height of each cell in pixels
 			// CELL WIDTH = WINDOW WIDTH / NUMBER OF CELLS IN X
-			float cellWidth = (float) graphicsPanel1.ClientSize.Width / (float) scratchPad.GetLength(0);
+			float cellWidth = graphicsPanel1.ClientSize.Width / (float) _scratchPad.GetLength(0);
 			// CELL HEIGHT = WINDOW HEIGHT / NUMBER OF CELLS IN Y
-			float cellHeight = (float) graphicsPanel1.ClientSize.Height / (float) scratchPad.GetLength(1);
+			float cellHeight = graphicsPanel1.ClientSize.Height / (float) _scratchPad.GetLength(1);
 
 			// A Pen for drawing the grid lines (color, width)
-			Pen gridPen = new Pen(gridColor, 1);
+			Pen gridPen = new Pen(_gridColor, 1);
 
 			// A Brush for filling living cells interiors (color)
-			Brush cellBrush      = new SolidBrush(cellColor);
-			Brush cellEmptyBrush = new SolidBrush(emptyCellColor);
+			Brush cellBrush      = new SolidBrush(_cellColor);
+			Brush cellEmptyBrush = new SolidBrush(_emptyCellColor);
 
 			// Create and format font
 			Font font = new Font("Fira Sans", 8f);
@@ -104,12 +158,13 @@ namespace Game_Of_Life {
 			stringFormat.Alignment     = StringAlignment.Center;
 			stringFormat.LineAlignment = StringAlignment.Center;
 
-			universe = scratchPad;
+			//Overwrite the previous universe
+			_universe = _scratchPad;
 
 			// Iterate through the universe in the y, top to bottom
-			for (int y = 0; y < scratchPad.GetLength(1); y++) {
+			for (int y = 0; y < _scratchPad.GetLength(1); y++) {
 				// Iterate through the universe in the x, left to right
-				for (int x = 0; x < scratchPad.GetLength(0); x++) {
+				for (int x = 0; x < _scratchPad.GetLength(0); x++) {
 					// A rectangle to represent each cell in pixels
 					RectangleF cellRect = RectangleF.Empty;
 					cellRect.X      = x * cellWidth;
@@ -117,26 +172,25 @@ namespace Game_Of_Life {
 					cellRect.Width  = cellWidth;
 					cellRect.Height = cellHeight;
 
+					//Count the current cells living neighbors
 					int neighbors = CountNeighbors(x, y);
 
 					// Fill the cell with a brush if alive
-					if (universe[x, y]) {
+					if (_universe[x, y])
 						e.Graphics.FillRectangle(cellBrush, cellRect);
-					} else {
+					else
 						e.Graphics.FillRectangle(cellEmptyBrush, cellRect);
-					}
 
-					if (seeNeighborCount) {
+					//Write the cells living neighbors to the board
+					if (_seeNeighborCount)
 						if (neighbors != 0) {
-							if (neighbors > 3) {
+							if (neighbors > 3)
 								e.Graphics.DrawString(neighbors.ToString(), font, Brushes.DarkRed, cellRect, stringFormat);
-							} else if (neighbors == 2 || neighbors == 3) {
+							else if (neighbors == 2 || neighbors == 3)
 								e.Graphics.DrawString(neighbors.ToString(), font, Brushes.LawnGreen, cellRect, stringFormat);
-							} else {
+							else
 								e.Graphics.DrawString(neighbors.ToString(), font, Brushes.Black, cellRect, stringFormat);
-							}
 						}
-					}
 
 					// Outline the cell with a pen
 					e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
@@ -144,8 +198,8 @@ namespace Game_Of_Life {
 			}
 
 			//Display the Grid Size of the Universe
-			toolStripStatusLabelGridSize.Text = "Grid Size = " + universe.GetLength(0) + ", " + universe.GetLength(1);
-			seedToolStrip.Text                = "Seed = "                                     + seed;
+			toolStripStatusLabelGridSize.Text = "Grid Size = " + _universe.GetLength(0) + ", " + _universe.GetLength(1);
+			seedToolStrip.Text                = "Seed = "                                      + _seed;
 
 			// Cleaning up pens and brushes
 			font.Dispose();
@@ -157,8 +211,8 @@ namespace Game_Of_Life {
 			// If the left mouse button was clicked
 			if (e.Button == MouseButtons.Left) {
 				// Calculate the width and height of each cell in pixels
-				float cellWidth  = (float) graphicsPanel1.ClientSize.Width  / (float) scratchPad.GetLength(0);
-				float cellHeight = (float) graphicsPanel1.ClientSize.Height / (float) scratchPad.GetLength(1);
+				float cellWidth  = graphicsPanel1.ClientSize.Width  / (float) _scratchPad.GetLength(0);
+				float cellHeight = graphicsPanel1.ClientSize.Height / (float) _scratchPad.GetLength(1);
 
 				// Calculate the cell that was clicked in
 				// CELL X = MOUSE X / CELL WIDTH
@@ -167,98 +221,145 @@ namespace Game_Of_Life {
 				float y = e.Y / cellHeight;
 
 				// Toggle the cell's state
-				scratchPad[(int) x, (int) y] = !scratchPad[(int) x, (int) y];
+				_scratchPad[(int) x, (int) y] = !_scratchPad[(int) x, (int) y];
 
 				// Tell Windows you need to repaint
 				graphicsPanel1.Invalidate();
 			}
 		}
 
+		/// <summary>
+		///     Closes the program
+		/// </summary>
+		/// <param name="sender">Object that tells the program to shut down</param>
+		/// <param name="e">Event call</param>
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
 			Close();
 		}
 
+		/// <summary>
+		///     Resets the universe with a new grid of blank cells
+		/// </summary>
+		/// <param name="sender">Object that tells the program to reset</param>
+		/// <param name="e">Event Call</param>
 		private void newToolStripMenuItem_Click(object sender, EventArgs e) {
-			for (int y = 0; y < universe.GetLength(1); y++) {
-				for (int x = 0; x < universe.GetLength(0); x++) {
-					universe[x, y] = false;
-				}
+			for (int y = 0; y < _universe.GetLength(1); y++) {
+				for (int x = 0; x < _universe.GetLength(0); x++) _universe[x, y] = false;
 			}
 
-			generations = 0;
+			_generations = 0;
 
-			timer.Enabled = false;
+			_timer.Enabled = false;
 
-			toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+			toolStripStatusLabelGenerations.Text = "Generations = " + _generations;
 
 			graphicsPanel1.Invalidate();
 		}
 
+		/// <summary>
+		///     Starts the life cycle of the cells
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void startButton_Click(object sender, EventArgs e) {
-			timer.Enabled = true;
+			//Starts the timer
+			_timer.Enabled = true;
 
-			if (timer.Enabled) {
-				timer.Tick += Timer_Tick;
-			}
+			//If the timer is started increment tick
+			if (_timer.Enabled) _timer.Tick += Timer_Tick;
 
 			graphicsPanel1.Invalidate();
 		}
 
+		/// <summary>
+		///     Pauses the life cycle of the cells
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void pauseButton_Click(object sender, EventArgs e) {
-			timer.Enabled = false;
+			//Stops the timer
+			_timer.Enabled = false;
 
 			graphicsPanel1.Invalidate();
 		}
 
+		/// <summary>
+		///     Counts the neighbors of cell (x, y)
+		/// </summary>
+		/// <param name="x">The horizontal coordinate of the cell</param>
+		/// <param name="y">The vertical coordinate of the cell</param>
+		/// <returns>The number of living neighbors surrounding the cell</returns>
 		private int CountNeighbors(int x, int y) {
+			//An int to keep track of the cell's neighbors
 			int livingNeighbors = 0;
+
+			//Loop through the surrounding cells starting with the top right corner
+			//[  ][  ][  ]
+			//[  ][xy][  ]
+			//[  ][  ][  ]
 			for (int j = -1; j <= 1; j++) {
-				for (int i = -1; i <= 1; i++) {
-					if (x + i < universe.GetLength(0) && y + j < universe.GetLength(1) && x + i >= 0 && y + j >= 0) {
-						if (i != 0 || j != 0) {
-							if (universe[x + i, y + j]) {
+				for (int i = -1; i <= 1; i++) //Check if x + i and y + j are within the boundaries
+					if (x + i < _universe.GetLength(0) && y + j < _universe.GetLength(1) && x + i >= 0 && y + j >= 0) {
+						//Make sure that x + i != x and y + j != y
+						if (i != 0 || j != 0) //Test the cell in the universe and if the cell is alive (if universe[x + i, y + j] returns true)
+							if (_universe[x + i, y + j])
 								livingNeighbors++;
-							}
-						}
 					} else {
-						if (infinite) {
+						//When infinite loop is enabled
+						if (_infinite) {
+							//Create temporary x and y positions
 							int xT = x;
 							int yT = y;
-							if (x + i > universe.GetLength(0) - 1) {
+
+							//Test if x + i is > the universe width or is < 0
+							if (x + i > _universe.GetLength(0) - 1) //set xT to be -1
 								xT = -1;
-							} else if (x + i < 0) {
-								xT = universe.GetLength(0);
-							}
+							else if (x + i < 0) //set xT to be the width of the universe
+								xT = _universe.GetLength(0);
 
-							if (y + j > universe.GetLength(1) - 1) {
+							//Test if y + j is > the universe height or is < 0 
+							if (y + j > _universe.GetLength(1) - 1) //set yT to be -1
 								yT = -1;
-							} else if (y + j < 0) {
-								yT = universe.GetLength(1);
-							}
+							else if (y + j < 0) //set yT to be the height of the universe
+								yT = _universe.GetLength(1);
 
-							if (i != 0 || j != 0) {
-								if (universe[xT +i, yT + j]) {
+							//Make sure that xT + i != xT and yT + j != yT
+							if (i != 0 || j != 0) //Test the cell in the universe and if the cell is alive (if universe[xT + i, yT + j] returns true)
+								if (_universe[xT + i, yT + j])
 									livingNeighbors++;
-								}
-							}
 						}
 					}
-				}
 			}
 
+			//Return the amount of living neighbors surrounding cell (x, y)
 			return livingNeighbors;
 		}
 
+		/// <summary>
+		///     Move forward one generation
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void stepButton_Click(object sender, EventArgs e) {
 			NextGeneration();
 		}
 
+		/// <summary>
+		///     Toggle the visibility of the Neighbor Count
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void seeNeighborCountToggle_Click(object sender, EventArgs e) {
-			seeNeighborCount = !seeNeighborCount;
+			_seeNeighborCount = !_seeNeighborCount;
 
 			graphicsPanel1.Invalidate();
 		}
 
+		/// <summary>
+		///     Save the current array of cells as a .cells file
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void saveToolStripButton_Click(object sender, EventArgs e) {
 			SaveFileDialog dlg = new SaveFileDialog();
 			dlg.Filter      = "All Files|*.*|Cells|*.cells";
@@ -269,18 +370,16 @@ namespace Game_Of_Life {
 				StreamWriter writer = new StreamWriter(dlg.FileName);
 
 				//Iterate through the universe one row at a time.
-				for (int y = 0; y < universe.GetLength(1); y++) {
+				for (int y = 0; y < _universe.GetLength(1); y++) {
 					//Create a string to represent the current row.
-					String currentRow = string.Empty;
+					string currentRow = string.Empty;
 
 					//Iterate through the current row one cell at a time.
-					for (int x = 0; x < universe.GetLength(0); x++) {
-						if (universe[x, y]) {
+					for (int x = 0; x < _universe.GetLength(0); x++)
+						if (_universe[x, y])
 							currentRow += 'O';
-						} else {
+						else
 							currentRow += '.';
-						}
-					}
 
 					writer.WriteLine(currentRow);
 				}
@@ -289,6 +388,11 @@ namespace Game_Of_Life {
 			}
 		}
 
+		/// <summary>
+		///     Open a saved .cells file
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void openToolStripButton_Click(object sender, EventArgs e) {
 			OpenFileDialog dlg = new OpenFileDialog();
 			dlg.Filter      = "All Files|*.*|Cells|*.cells";
@@ -310,17 +414,15 @@ namespace Game_Of_Life {
 					//and should be ignored
 					if (row[0] != '!') {
 						maxHeight++;
-						if (maxWidth < row.Length) {
-							maxWidth = row.Length;
-						}
+						if (maxWidth < row.Length) maxWidth = row.Length;
 					}
 				}
 
 
 				//Resize the current universe and scratchPad
 				//to the width and height of the file calculated above.
-				universe   = new bool[maxWidth, maxHeight];
-				scratchPad = new bool[universe.GetLength(0), universe.GetLength(1)];
+				_universe   = new bool[maxWidth, maxHeight];
+				_scratchPad = new bool[_universe.GetLength(0), _universe.GetLength(1)];
 
 				//Reset the file pointer back to the beginning of the file.
 				reader.BaseStream.Seek(0, SeekOrigin.Begin);
@@ -337,15 +439,11 @@ namespace Game_Of_Life {
 						for (int xPos = 0; xPos < row.Length; xPos++) {
 							//if row[xPos] is a 'O' (capital O) then
 							//set the corresponding cell in the universe to alive
-							if (row[xPos] == 'O') {
-								scratchPad[xPos, yPos] = true;
-							}
+							if (row[xPos] == 'O') _scratchPad[xPos, yPos] = true;
 
 							//if row[xPos] is a '.' (period) then
 							//set the corresponding cell in the universe to dead.
-							if (row[xPos] == '.') {
-								scratchPad[xPos, yPos] = false;
-							}
+							if (row[xPos] == '.') _scratchPad[xPos, yPos] = false;
 						}
 
 						yPos++;
@@ -358,76 +456,138 @@ namespace Game_Of_Life {
 			}
 		}
 
-		private void darkModeToolStripMenuItem_Click(object sender, EventArgs e) {
-			gridColor      = Color.DarkSlateGray;
-			cellColor      = Color.Teal;
-			emptyCellColor = Color.LightSlateGray;
-
-			graphicsPanel1.Invalidate();
-		}
-
-		private void lightModeToolStripMenuItem_Click(object sender, EventArgs e) {
-			gridColor      = Color.SlateGray;
-			cellColor      = Color.Black;
-			emptyCellColor = Color.White;
-
-			graphicsPanel1.Invalidate();
-		}
-
+		/// <summary>
+		///     Set the width of the universe based on the text in the width text box
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void widthTextBox_TextChanged(object sender, EventArgs e) {
 			int.TryParse(widthTextBox.Text, out int width);
-			universe   = new bool[width, universe.GetLength(1)];
-			scratchPad = universe;
+			_universe   = new bool[width, _universe.GetLength(1)];
+			_scratchPad = _universe;
 
 			graphicsPanel1.Invalidate();
 		}
 
+		/// <summary>
+		///     Set the width of the universe based on the text in the width text box
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void heightTextBox_TextChanged(object sender, EventArgs e) {
 			int.TryParse(heightTextBox.Text, out int height);
-			universe   = new bool[universe.GetLength(0), height];
-			scratchPad = universe;
+			_universe   = new bool[_universe.GetLength(0), height];
+			_scratchPad = _universe;
 
 			graphicsPanel1.Invalidate();
 		}
 
+		/// <summary>
+		///     Create a seed for randomization based on the current time on the system
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void fromTimeToolStripMenuItem_Click(object sender, EventArgs e) {
 			Random rand = new Random(DateTime.Now.Millisecond);
-			seed             = rand.Next();
-			seedTextBox.Text = seed.ToString();
+			_seed            = rand.Next();
+			seedTextBox.Text = _seed.ToString();
 			Randomize();
 		}
 
+		/// <summary>
+		///     Manually write a seed to be used for randomizing the cells
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void seedTextBox_TextChanged(object sender, EventArgs e) {
-			int.TryParse(seedTextBox.Text, out seed);
+			int.TryParse(seedTextBox.Text, out _seed);
 			graphicsPanel1.Invalidate();
 		}
 
+		/// <summary>
+		///     Sets the seed text box to be the current seed
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void fromSeedToolStripMenuItem_Click(object sender, EventArgs e) {
-			seedTextBox.Text = seed.ToString();
+			seedTextBox.Text = _seed.ToString();
 			Randomize();
 		}
 
+		/// <summary>
+		///     Randomized the cells based on the seed
+		/// </summary>
 		private void Randomize() {
-			Random randFromSeed = new Random(seed);
-			int    rand         = 0;
-			for (int y = 0; y < universe.GetLength(1); y++) {
-				for (int x = 0; x < universe.GetLength(0); x++) {
+			Random randFromSeed = new Random(_seed);
+			long   rand         = 0;
+			for (int y = 0; y < _universe.GetLength(1); y++) {
+				for (int x = 0; x < _universe.GetLength(0); x++) {
 					rand = randFromSeed.Next(2);
-					if (rand != 0) {
-						scratchPad[x, y] = false;
-					} else {
-						scratchPad[x, y] = true;
-					}
+					if (rand != 0)
+						_scratchPad[x, y] = false;
+					else
+						_scratchPad[x, y] = true;
 				}
 			}
 
 			graphicsPanel1.Invalidate();
 		}
 
+		/// <summary>
+		///     Toggle the infinite loop
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void terroidialToolStripMenuItem_Click(object sender, EventArgs e) {
-			infinite = !infinite;
+			_infinite = !_infinite;
 
 			graphicsPanel1.Invalidate();
+		}
+
+		private void customizeToolStripMenuItem_Click(object sender, EventArgs e) {
+			_settingsDialog.Width        = Width.ToString();
+			_settingsDialog.Height       = Height.ToString();
+			_settingsDialog.Theme        = _currentTheme;
+			_settingsDialog.ColorButtons = new[] {_gridColor, _emptyCellColor, _cellColor};
+
+			if (DialogResult.OK == _settingsDialog.ShowDialog()) {
+				int.TryParse(_settingsDialog.Width,  out int width);
+				int.TryParse(_settingsDialog.Height, out int height);
+				if (_universe.GetLength(0) != width) {
+					_universe = new bool[width, _universe.GetLength(1)];
+				}
+
+				if (_universe.GetLength(1) != height) {
+					_universe = new bool[_universe.GetLength(0), height];
+				}
+
+				_scratchPad = _universe;
+
+				widthTextBox.Text  = _universe.GetLength(0).ToString();
+				heightTextBox.Text = _universe.GetLength(1).ToString();
+				if (_settingsDialog.Theme != null) {
+					if (_settingsDialog.Theme.ToLower() != _currentTheme) {
+						SetTheme();
+						_settingsDialog.Invalidate();
+					}
+				}
+
+				_gridColor      = _settingsDialog.ColorButtons[0];
+				_emptyCellColor = _settingsDialog.ColorButtons[1];
+				_cellColor      = _settingsDialog.ColorButtons[2];
+				_currentTheme   = _settingsDialog.Theme;
+				graphicsPanel1.Invalidate();
+			}
+		}
+
+		private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+			Settings.Default.Theme           = _currentTheme;
+			Settings.Default.BackColor       = _emptyCellColor;
+			Settings.Default.LineColor       = _gridColor;
+			Settings.Default.LivingCellColor = _cellColor;
+
+			Settings.Default.Width  = _universe.GetLength(0);
+			Settings.Default.Height = _universe.GetLength(1);
 		}
 	}
 }

@@ -29,6 +29,10 @@
           <e p="ic_save_white_24dp.png" t="Include" />
           <e p="ic_skip_next_white_24dp.png" t="Include" />
         </e>
+        <e p="Settings.cs" t="Include" />
+        <e p="SettingsDialog.cs" t="Include" />
+        <e p="SettingsDialog.Designer.cs" t="Include" />
+        <e p="SettingsDialog.resx" t="Include" />
       </e>
       <e p="Game Of Life.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />

@@ -7,3 +7,4 @@ C:\Coding\Workspace\Game Of Life\Game Of Life\obj\Debug\Game_Of_Life.Properties.
 C:\Coding\Workspace\Game Of Life\Game Of Life\obj\Debug\Game Of Life.csproj.GenerateResource.cache
 C:\Coding\Workspace\Game Of Life\Game Of Life\obj\Debug\Game Of Life.exe
 C:\Coding\Workspace\Game Of Life\Game Of Life\obj\Debug\Game Of Life.pdb
+C:\Coding\Workspace\Game Of Life\Game Of Life\obj\Debug\Game_Of_Life.SettingsDialog.resources
