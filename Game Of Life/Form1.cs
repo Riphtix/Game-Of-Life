@@ -30,6 +30,7 @@ namespace Game_Of_Life {
 
 		bool seeNeighborCount = false;
 		int  seed             = 0;
+		bool infinite         = false;
 
 		public Form1() {
 			InitializeComponent();
@@ -213,10 +214,32 @@ namespace Game_Of_Life {
 			int livingNeighbors = 0;
 			for (int j = -1; j <= 1; j++) {
 				for (int i = -1; i <= 1; i++) {
-					if (x + i <= universe.GetLength(0) - 1 && y + j <= universe.GetLength(1) - 1 && x + i >= 0 && y + j >= 0) {
+					if (x + i < universe.GetLength(0) && y + j < universe.GetLength(1) && x + i >= 0 && y + j >= 0) {
 						if (i != 0 || j != 0) {
 							if (universe[x + i, y + j]) {
 								livingNeighbors++;
+							}
+						}
+					} else {
+						if (infinite) {
+							int xT = x;
+							int yT = y;
+							if (x + i > universe.GetLength(0) - 1) {
+								xT = -1;
+							} else if (x + i < 0) {
+								xT = universe.GetLength(0);
+							}
+
+							if (y + j > universe.GetLength(1) - 1) {
+								yT = -1;
+							} else if (y + j < 0) {
+								yT = universe.GetLength(1);
+							}
+
+							if (i != 0 || j != 0) {
+								if (universe[xT +i, yT + j]) {
+									livingNeighbors++;
+								}
 							}
 						}
 					}
@@ -397,6 +420,12 @@ namespace Game_Of_Life {
 					}
 				}
 			}
+
+			graphicsPanel1.Invalidate();
+		}
+
+		private void terroidialToolStripMenuItem_Click(object sender, EventArgs e) {
+			infinite = !infinite;
 
 			graphicsPanel1.Invalidate();
 		}
