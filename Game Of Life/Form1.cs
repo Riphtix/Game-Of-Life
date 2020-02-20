@@ -20,6 +20,7 @@ namespace Game_Of_Life {
 
 		private bool _infinite;
 		private int  _seed;
+		private int _tickSpeed = 20;
 
 		private bool _seeNeighborCount;
 
@@ -67,7 +68,7 @@ namespace Game_Of_Life {
 			seedTextBox.Text   = _seed.ToString();
 
 			// Setup the timer
-			_timer.Interval = 20; // milliseconds
+			_timer.Interval = _tickSpeed; // milliseconds
 		}
 
 		public void SetTheme() {
@@ -549,6 +550,7 @@ namespace Game_Of_Life {
 		private void customizeToolStripMenuItem_Click(object sender, EventArgs e) {
 			_settingsDialog.Width        = Width.ToString();
 			_settingsDialog.Height       = Height.ToString();
+			_settingsDialog.TickSpeed = _tickSpeed.ToString();
 			_settingsDialog.Theme        = _currentTheme;
 			_settingsDialog.ColorButtons = new[] {_gridColor, _emptyCellColor, _cellColor};
 
@@ -573,6 +575,9 @@ namespace Game_Of_Life {
 						_settingsDialog.Invalidate();
 					}
 				}
+
+				int.TryParse(_settingsDialog.TickSpeed, out _tickSpeed);
+				_timer.Interval = _tickSpeed;
 
 				_gridColor      = _settingsDialog.ColorButtons[0];
 				_emptyCellColor = _settingsDialog.ColorButtons[1];

@@ -91,5 +91,17 @@ namespace Game_Of_Life.Properties {
                 this["LivingCellColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public int TickSpeed {
+            get {
+                return ((int)(this["TickSpeed"]));
+            }
+            set {
+                this["TickSpeed"] = value;
+            }
+        }
     }
 }

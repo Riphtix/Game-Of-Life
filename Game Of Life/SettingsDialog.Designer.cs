@@ -43,13 +43,15 @@ namespace Game_Of_Life {
 			this.button5           = new System.Windows.Forms.Button();
 			this.textBox1          = new System.Windows.Forms.TextBox();
 			this.textBox2          = new System.Windows.Forms.TextBox();
+			this.textBox3          = new System.Windows.Forms.TextBox();
+			this.label7            = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// button1
 			// 
 			this.button1.Anchor                  = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.button1.DialogResult            = System.Windows.Forms.DialogResult.OK;
-			this.button1.Location                = new System.Drawing.Point(54, 215);
+			this.button1.Location                = new System.Drawing.Point(54, 239);
 			this.button1.Name                    = "button1";
 			this.button1.Size                    = new System.Drawing.Size(72, 24);
 			this.button1.TabIndex                = 0;
@@ -60,7 +62,7 @@ namespace Game_Of_Life {
 			// 
 			this.button2.Anchor                  = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.button2.DialogResult            = System.Windows.Forms.DialogResult.Cancel;
-			this.button2.Location                = new System.Drawing.Point(139, 215);
+			this.button2.Location                = new System.Drawing.Point(139, 239);
 			this.button2.Name                    = "button2";
 			this.button2.Size                    = new System.Drawing.Size(72, 24);
 			this.button2.TabIndex                = 1;
@@ -87,7 +89,7 @@ namespace Game_Of_Life {
 			// 
 			// label3
 			// 
-			this.label3.Location  = new System.Drawing.Point(34, 78);
+			this.label3.Location  = new System.Drawing.Point(34, 107);
 			this.label3.Name      = "label3";
 			this.label3.Size      = new System.Drawing.Size(75, 15);
 			this.label3.TabIndex  = 7;
@@ -104,7 +106,7 @@ namespace Game_Of_Life {
 			this.comboBox1.DropDownStyle     = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.FormattingEnabled = true;
 			this.comboBox1.Items.AddRange(new object[] {"DARK", "LIGHT", "CUSTOM"});
-			this.comboBox1.Location             =  new System.Drawing.Point(111, 75);
+			this.comboBox1.Location             =  new System.Drawing.Point(111, 104);
 			this.comboBox1.Name                 =  "comboBox1";
 			this.comboBox1.Size                 =  new System.Drawing.Size(100, 23);
 			this.comboBox1.TabIndex             =  8;
@@ -112,7 +114,7 @@ namespace Game_Of_Life {
 			// 
 			// button3
 			// 
-			this.button3.Location                =  new System.Drawing.Point(111, 103);
+			this.button3.Location                =  new System.Drawing.Point(111, 132);
 			this.button3.Name                    =  "button3";
 			this.button3.Size                    =  new System.Drawing.Size(31, 28);
 			this.button3.TabIndex                =  9;
@@ -121,7 +123,7 @@ namespace Game_Of_Life {
 			// 
 			// label4
 			// 
-			this.label4.Location  = new System.Drawing.Point(34, 112);
+			this.label4.Location  = new System.Drawing.Point(34, 141);
 			this.label4.Name      = "label4";
 			this.label4.Size      = new System.Drawing.Size(75, 15);
 			this.label4.TabIndex  = 10;
@@ -130,7 +132,7 @@ namespace Game_Of_Life {
 			// 
 			// label5
 			// 
-			this.label5.Location  = new System.Drawing.Point(34, 147);
+			this.label5.Location  = new System.Drawing.Point(34, 177);
 			this.label5.Name      = "label5";
 			this.label5.Size      = new System.Drawing.Size(75, 15);
 			this.label5.TabIndex  = 12;
@@ -139,7 +141,7 @@ namespace Game_Of_Life {
 			// 
 			// button4
 			// 
-			this.button4.Location                =  new System.Drawing.Point(111, 138);
+			this.button4.Location                =  new System.Drawing.Point(111, 167);
 			this.button4.Name                    =  "button4";
 			this.button4.Size                    =  new System.Drawing.Size(31, 28);
 			this.button4.TabIndex                =  11;
@@ -148,7 +150,7 @@ namespace Game_Of_Life {
 			// 
 			// label6
 			// 
-			this.label6.Location  = new System.Drawing.Point(13, 180);
+			this.label6.Location  = new System.Drawing.Point(13, 209);
 			this.label6.Name      = "label6";
 			this.label6.Size      = new System.Drawing.Size(96, 15);
 			this.label6.TabIndex  = 14;
@@ -157,7 +159,7 @@ namespace Game_Of_Life {
 			// 
 			// button5
 			// 
-			this.button5.Location                =  new System.Drawing.Point(111, 172);
+			this.button5.Location                =  new System.Drawing.Point(111, 201);
 			this.button5.Name                    =  "button5";
 			this.button5.Size                    =  new System.Drawing.Size(31, 28);
 			this.button5.TabIndex                =  13;
@@ -178,13 +180,31 @@ namespace Game_Of_Life {
 			this.textBox2.Size     = new System.Drawing.Size(100, 23);
 			this.textBox2.TabIndex = 16;
 			// 
+			// textBox3
+			// 
+			this.textBox3.Location = new System.Drawing.Point(111, 75);
+			this.textBox3.Name     = "textBox3";
+			this.textBox3.Size     = new System.Drawing.Size(100, 23);
+			this.textBox3.TabIndex = 18;
+			// 
+			// label7
+			// 
+			this.label7.Location  = new System.Drawing.Point(34, 81);
+			this.label7.Name      = "label7";
+			this.label7.Size      = new System.Drawing.Size(75, 15);
+			this.label7.TabIndex  = 17;
+			this.label7.Text      = "Tick Speed";
+			this.label7.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			// 
 			// SettingsDialog
 			// 
 			this.AcceptButton        = this.button1;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode       = System.Windows.Forms.AutoScaleMode.Font;
 			this.CancelButton        = this.button2;
-			this.ClientSize          = new System.Drawing.Size(227, 254);
+			this.ClientSize          = new System.Drawing.Size(227, 278);
+			this.Controls.Add(this.textBox3);
+			this.Controls.Add(this.label7);
 			this.Controls.Add(this.textBox2);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.label6);
@@ -226,5 +246,7 @@ namespace Game_Of_Life {
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.TextBox textBox2;
 		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.TextBox textBox3;
 	}
 }

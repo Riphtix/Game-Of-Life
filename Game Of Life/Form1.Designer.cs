@@ -41,7 +41,6 @@
 			this.fromCurrentSeedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.terroidialToolStripMenuItem      = new System.Windows.Forms.ToolStripMenuItem();
 			this.customizeToolStripMenuItem       = new System.Windows.Forms.ToolStripMenuItem();
-			this.optionsToolStripMenuItem1        = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1                       = new System.Windows.Forms.ToolStrip();
 			this.newToolStripButton               = new System.Windows.Forms.ToolStripButton();
 			this.openToolStripButton              = new System.Windows.Forms.ToolStripButton();
@@ -96,7 +95,7 @@
 			this.newToolStripMenuItem.ImageTransparentColor =  System.Drawing.Color.Magenta;
 			this.newToolStripMenuItem.Name                  =  "newToolStripMenuItem";
 			this.newToolStripMenuItem.ShortcutKeys          =  ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-			this.newToolStripMenuItem.Size                  =  new System.Drawing.Size(152, 22);
+			this.newToolStripMenuItem.Size                  =  new System.Drawing.Size(146, 22);
 			this.newToolStripMenuItem.Text                  =  "&New";
 			this.newToolStripMenuItem.Click                 += new System.EventHandler(this.newToolStripMenuItem_Click);
 			// 
@@ -106,7 +105,7 @@
 			this.openToolStripMenuItem.ImageTransparentColor =  System.Drawing.Color.Magenta;
 			this.openToolStripMenuItem.Name                  =  "openToolStripMenuItem";
 			this.openToolStripMenuItem.ShortcutKeys          =  ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-			this.openToolStripMenuItem.Size                  =  new System.Drawing.Size(152, 22);
+			this.openToolStripMenuItem.Size                  =  new System.Drawing.Size(146, 22);
 			this.openToolStripMenuItem.Text                  =  "&Open";
 			this.openToolStripMenuItem.Click                 += new System.EventHandler(this.openToolStripButton_Click);
 			// 
@@ -116,14 +115,14 @@
 			this.saveToolStripMenuItem.ImageTransparentColor =  System.Drawing.Color.Magenta;
 			this.saveToolStripMenuItem.Name                  =  "saveToolStripMenuItem";
 			this.saveToolStripMenuItem.ShortcutKeys          =  ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-			this.saveToolStripMenuItem.Size                  =  new System.Drawing.Size(152, 22);
+			this.saveToolStripMenuItem.Size                  =  new System.Drawing.Size(146, 22);
 			this.saveToolStripMenuItem.Text                  =  "&Save";
 			this.saveToolStripMenuItem.Click                 += new System.EventHandler(this.saveToolStripButton_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name  =  "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size  =  new System.Drawing.Size(152, 22);
+			this.exitToolStripMenuItem.Size  =  new System.Drawing.Size(146, 22);
 			this.exitToolStripMenuItem.Text  =  "E&xit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -162,11 +161,8 @@
 			// 
 			// toolsToolStripMenuItem
 			// 
-			this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-																											this.optionsToolStripMenuItem, this.terroidialToolStripMenuItem,
-																											this.customizeToolStripMenuItem,
-																											this.optionsToolStripMenuItem1
-																										});
+			this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[]
+															   {this.optionsToolStripMenuItem, this.terroidialToolStripMenuItem, this.customizeToolStripMenuItem});
 			this.toolsToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (224)))), ((int) (((byte) (224)))), ((int) (((byte) (224)))));
 			this.toolsToolStripMenuItem.Name      = "toolsToolStripMenuItem";
 			this.toolsToolStripMenuItem.Size      = new System.Drawing.Size(46, 20);
@@ -177,7 +173,7 @@
 			this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[]
 																 {this.fromTimeToolStripMenuItem, this.fromSeedToolStripMenuItem, this.fromCurrentSeedToolStripMenuItem});
 			this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-			this.optionsToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+			this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.optionsToolStripMenuItem.Text = "Randomize";
 			// 
 			// fromTimeToolStripMenuItem
@@ -209,22 +205,16 @@
 			// 
 			this.terroidialToolStripMenuItem.CheckOnClick =  true;
 			this.terroidialToolStripMenuItem.Name         =  "terroidialToolStripMenuItem";
-			this.terroidialToolStripMenuItem.Size         =  new System.Drawing.Size(141, 22);
+			this.terroidialToolStripMenuItem.Size         =  new System.Drawing.Size(152, 22);
 			this.terroidialToolStripMenuItem.Text         =  "Infinite Loop";
 			this.terroidialToolStripMenuItem.Click        += new System.EventHandler(this.terroidialToolStripMenuItem_Click);
 			// 
 			// customizeToolStripMenuItem
 			// 
 			this.customizeToolStripMenuItem.Name  =  "customizeToolStripMenuItem";
-			this.customizeToolStripMenuItem.Size  =  new System.Drawing.Size(141, 22);
+			this.customizeToolStripMenuItem.Size  =  new System.Drawing.Size(152, 22);
 			this.customizeToolStripMenuItem.Text  =  "&Customize";
 			this.customizeToolStripMenuItem.Click += new System.EventHandler(this.customizeToolStripMenuItem_Click);
-			// 
-			// optionsToolStripMenuItem1
-			// 
-			this.optionsToolStripMenuItem1.Name = "optionsToolStripMenuItem1";
-			this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(141, 22);
-			this.optionsToolStripMenuItem1.Text = "Options";
 			// 
 			// toolStrip1
 			// 
@@ -486,7 +476,6 @@
 		private System.Windows.Forms.ToolStripMenuItem fromSeedToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem fromCurrentSeedToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem terroidialToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem1;
 	}
 }
 

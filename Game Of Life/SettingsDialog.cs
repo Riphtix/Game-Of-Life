@@ -31,11 +31,17 @@ namespace Game_Of_Life {
 			}
 		}
 
+		public string TickSpeed {
+			get => textBox3.Text;
+			set => textBox3.Text = value;
+		}
+
 		public SettingsDialog() {
 			InitializeComponent();
 
 			textBox1.Text = Settings.Default.Width.ToString();
 			textBox2.Text = Settings.Default.Height.ToString();
+			textBox3.Text = Settings.Default.TickSpeed.ToString();
 
 			button3.BackColor = Settings.Default.LineColor;
 			button4.BackColor = Settings.Default.BackColor;
