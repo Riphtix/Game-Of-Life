@@ -423,6 +423,8 @@ namespace Game_Of_Life {
 				//to the width and height of the file calculated above.
 				_universe   = new bool[maxWidth, maxHeight];
 				_scratchPad = new bool[_universe.GetLength(0), _universe.GetLength(1)];
+				widthTextBox.Text = Width.ToString();
+				heightTextBox.Text = Height.ToString();
 
 				//Reset the file pointer back to the beginning of the file.
 				reader.BaseStream.Seek(0, SeekOrigin.Begin);

@@ -42,18 +42,11 @@
 			this.terroidialToolStripMenuItem      = new System.Windows.Forms.ToolStripMenuItem();
 			this.customizeToolStripMenuItem       = new System.Windows.Forms.ToolStripMenuItem();
 			this.optionsToolStripMenuItem1        = new System.Windows.Forms.ToolStripMenuItem();
-			this.helpToolStripMenuItem            = new System.Windows.Forms.ToolStripMenuItem();
-			this.contentsToolStripMenuItem        = new System.Windows.Forms.ToolStripMenuItem();
-			this.indexToolStripMenuItem           = new System.Windows.Forms.ToolStripMenuItem();
-			this.searchToolStripMenuItem          = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator5              = new System.Windows.Forms.ToolStripSeparator();
-			this.aboutToolStripMenuItem           = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStrip1                       = new System.Windows.Forms.ToolStrip();
 			this.newToolStripButton               = new System.Windows.Forms.ToolStripButton();
 			this.openToolStripButton              = new System.Windows.Forms.ToolStripButton();
 			this.saveToolStripButton              = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator6              = new System.Windows.Forms.ToolStripSeparator();
-			this.helpToolStripButton              = new System.Windows.Forms.ToolStripButton();
 			this.startButton                      = new System.Windows.Forms.ToolStripButton();
 			this.pauseButton                      = new System.Windows.Forms.ToolStripButton();
 			this.stepButton                       = new System.Windows.Forms.ToolStripButton();
@@ -80,8 +73,7 @@
 			// menuStrip1
 			// 
 			this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (64)))), ((int) (((byte) (64)))), ((int) (((byte) (64)))));
-			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[]
-										   {this.fileToolStripMenuItem, this.runToolStripMenuItem, this.toolsToolStripMenuItem, this.helpToolStripMenuItem});
+			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.fileToolStripMenuItem, this.runToolStripMenuItem, this.toolsToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name     = "menuStrip1";
 			this.menuStrip1.Padding  = new System.Windows.Forms.Padding(7, 2, 0, 2);
@@ -104,7 +96,7 @@
 			this.newToolStripMenuItem.ImageTransparentColor =  System.Drawing.Color.Magenta;
 			this.newToolStripMenuItem.Name                  =  "newToolStripMenuItem";
 			this.newToolStripMenuItem.ShortcutKeys          =  ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-			this.newToolStripMenuItem.Size                  =  new System.Drawing.Size(146, 22);
+			this.newToolStripMenuItem.Size                  =  new System.Drawing.Size(152, 22);
 			this.newToolStripMenuItem.Text                  =  "&New";
 			this.newToolStripMenuItem.Click                 += new System.EventHandler(this.newToolStripMenuItem_Click);
 			// 
@@ -114,7 +106,7 @@
 			this.openToolStripMenuItem.ImageTransparentColor =  System.Drawing.Color.Magenta;
 			this.openToolStripMenuItem.Name                  =  "openToolStripMenuItem";
 			this.openToolStripMenuItem.ShortcutKeys          =  ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-			this.openToolStripMenuItem.Size                  =  new System.Drawing.Size(146, 22);
+			this.openToolStripMenuItem.Size                  =  new System.Drawing.Size(152, 22);
 			this.openToolStripMenuItem.Text                  =  "&Open";
 			this.openToolStripMenuItem.Click                 += new System.EventHandler(this.openToolStripButton_Click);
 			// 
@@ -124,14 +116,14 @@
 			this.saveToolStripMenuItem.ImageTransparentColor =  System.Drawing.Color.Magenta;
 			this.saveToolStripMenuItem.Name                  =  "saveToolStripMenuItem";
 			this.saveToolStripMenuItem.ShortcutKeys          =  ((System.Windows.Forms.Keys) ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-			this.saveToolStripMenuItem.Size                  =  new System.Drawing.Size(146, 22);
+			this.saveToolStripMenuItem.Size                  =  new System.Drawing.Size(152, 22);
 			this.saveToolStripMenuItem.Text                  =  "&Save";
 			this.saveToolStripMenuItem.Click                 += new System.EventHandler(this.saveToolStripButton_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name  =  "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size  =  new System.Drawing.Size(146, 22);
+			this.exitToolStripMenuItem.Size  =  new System.Drawing.Size(152, 22);
 			this.exitToolStripMenuItem.Text  =  "E&xit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -234,58 +226,17 @@
 			this.optionsToolStripMenuItem1.Size = new System.Drawing.Size(141, 22);
 			this.optionsToolStripMenuItem1.Text = "Options";
 			// 
-			// helpToolStripMenuItem
-			// 
-			this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-																										   this.contentsToolStripMenuItem, this.indexToolStripMenuItem,
-																										   this.searchToolStripMenuItem,
-																										   this.toolStripSeparator5, this.aboutToolStripMenuItem
-																									   });
-			this.helpToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (224)))), ((int) (((byte) (224)))), ((int) (((byte) (224)))));
-			this.helpToolStripMenuItem.Name      = "helpToolStripMenuItem";
-			this.helpToolStripMenuItem.Size      = new System.Drawing.Size(44, 20);
-			this.helpToolStripMenuItem.Text      = "&Help";
-			// 
-			// contentsToolStripMenuItem
-			// 
-			this.contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
-			this.contentsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-			this.contentsToolStripMenuItem.Text = "&Contents";
-			// 
-			// indexToolStripMenuItem
-			// 
-			this.indexToolStripMenuItem.Name = "indexToolStripMenuItem";
-			this.indexToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-			this.indexToolStripMenuItem.Text = "&Index";
-			// 
-			// searchToolStripMenuItem
-			// 
-			this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-			this.searchToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-			this.searchToolStripMenuItem.Text = "&Search";
-			// 
-			// toolStripSeparator5
-			// 
-			this.toolStripSeparator5.Name = "toolStripSeparator5";
-			this.toolStripSeparator5.Size = new System.Drawing.Size(119, 6);
-			// 
-			// aboutToolStripMenuItem
-			// 
-			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-			this.aboutToolStripMenuItem.Text = "&About...";
-			// 
 			// toolStrip1
 			// 
 			this.toolStrip1.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (75)))), ((int) (((byte) (75)))), ((int) (((byte) (75)))));
 			this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 																						this.newToolStripButton, this.openToolStripButton, this.saveToolStripButton,
-																						this.toolStripSeparator6, this.helpToolStripButton,
-																						this.startButton, this.pauseButton, this.stepButton, this.seeNeighborCountToggle,
-																						this.toolStripSeparator3, this.toolStripLabel1,
-																						this.widthTextBox, this.toolStripLabel2, this.heightTextBox, this.toolStripSeparator7,
-																						this.toolStripLabel3, this.seedTextBox
+																						this.toolStripSeparator6, this.startButton,
+																						this.pauseButton, this.stepButton, this.seeNeighborCountToggle, this.toolStripSeparator3,
+																						this.toolStripLabel1, this.widthTextBox,
+																						this.toolStripLabel2, this.heightTextBox, this.toolStripSeparator7, this.toolStripLabel3,
+																						this.seedTextBox
 																					});
 			this.toolStrip1.Location   = new System.Drawing.Point(0, 24);
 			this.toolStrip1.Name       = "toolStrip1";
@@ -331,15 +282,6 @@
 			this.toolStripSeparator6.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.toolStripSeparator6.Name      = "toolStripSeparator6";
 			this.toolStripSeparator6.Size      = new System.Drawing.Size(6, 25);
-			// 
-			// helpToolStripButton
-			// 
-			this.helpToolStripButton.DisplayStyle          = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.helpToolStripButton.Image                 = global::Game_Of_Life.Properties.Resources.ic_info_outline_white_24dp;
-			this.helpToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.helpToolStripButton.Name                  = "helpToolStripButton";
-			this.helpToolStripButton.Size                  = new System.Drawing.Size(23, 22);
-			this.helpToolStripButton.Text                  = "He&lp";
 			// 
 			// startButton
 			// 
@@ -515,17 +457,10 @@
 		private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem customizeToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem contentsToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem indexToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
 		private System.Windows.Forms.ToolStripButton newToolStripButton;
 		private System.Windows.Forms.ToolStripButton openToolStripButton;
 		private System.Windows.Forms.ToolStripButton saveToolStripButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-		private System.Windows.Forms.ToolStripButton helpToolStripButton;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelGenerations;
 		private Game_Of_Life.GraphicsPanel graphicsPanel1;
 		private System.Windows.Forms.ToolStripButton startButton;
