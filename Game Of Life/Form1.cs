@@ -20,7 +20,7 @@ namespace Game_Of_Life {
 
 		private bool _infinite;
 		private int  _seed;
-		private int _tickSpeed = 20;
+		private int  _tickSpeed = 20;
 
 		private bool _seeNeighborCount;
 
@@ -422,9 +422,9 @@ namespace Game_Of_Life {
 
 				//Resize the current universe and scratchPad
 				//to the width and height of the file calculated above.
-				_universe   = new bool[maxWidth, maxHeight];
-				_scratchPad = new bool[_universe.GetLength(0), _universe.GetLength(1)];
-				widthTextBox.Text = Width.ToString();
+				_universe          = new bool[maxWidth, maxHeight];
+				_scratchPad        = new bool[_universe.GetLength(0), _universe.GetLength(1)];
+				widthTextBox.Text  = Width.ToString();
 				heightTextBox.Text = Height.ToString();
 
 				//Reset the file pointer back to the beginning of the file.
@@ -550,7 +550,7 @@ namespace Game_Of_Life {
 		private void customizeToolStripMenuItem_Click(object sender, EventArgs e) {
 			_settingsDialog.Width        = Width.ToString();
 			_settingsDialog.Height       = Height.ToString();
-			_settingsDialog.TickSpeed = _tickSpeed.ToString();
+			_settingsDialog.TickSpeed    = _tickSpeed.ToString();
 			_settingsDialog.Theme        = _currentTheme;
 			_settingsDialog.ColorButtons = new[] {_gridColor, _emptyCellColor, _cellColor};
 
